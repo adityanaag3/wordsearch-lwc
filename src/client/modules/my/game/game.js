@@ -1,7 +1,10 @@
 import { LightningElement, api, track } from 'lwc';
 
+const TOTAL_SECONDS = 65;
+
 export default class Game extends LightningElement {
     @api gameObj;
+    @api gameKey;
 
     @track gameBlocks = [];
     @track foundWords = [];
@@ -10,6 +13,12 @@ export default class Game extends LightningElement {
     endTimestamp;
     gameOver = false;
     gridWidth;
+
+    timeUp = false;
+    countDown;
+
+    totalSeconds = TOTAL_SECONDS;
+    secondsLeft = TOTAL_SECONDS;
 
     get duration(){
         if(this.startTimestamp && this.endTimestamp){
@@ -23,6 +32,14 @@ export default class Game extends LightningElement {
             return (this.gameObj.words.length - this.foundWords.length) + ' words remaining';
         }
         return '';
+    }
+
+    get numberOfWordsFound(){
+        return this.foundWords.length;
+    }
+
+    get solutionUrl(){
+        return `/resources/solutions/${this.gameKey}.png`
     }
 
     connectedCallback() {
@@ -48,6 +65,14 @@ export default class Game extends LightningElement {
             this.startTimestamp = d.getTime();
 
             this.gridWidth = `width: ${this.gameObj.gridSize * 60}px`;
+
+            this.countDown = setInterval(() => {
+                this.secondsLeft--;
+                if(this.secondsLeft === 0){
+                    this.timeUp = true;
+                    clearInterval(this.countDown);
+                }
+            }, 1000);
         }
     }
 
@@ -91,6 +116,7 @@ export default class Game extends LightningElement {
                 const d = new Date();
                 this.endTimestamp = d.getTime();
                 this.gameOver = true;
+                clearInterval(this.countDown);
             }
         } else {
             const element = event.target;
@@ -98,6 +124,11 @@ export default class Game extends LightningElement {
             setTimeout(() => {
                 element.classList.remove('animate');
             }, 1000);
+            this.gameBlocks.forEach((block)=>{
+                if(block.selected){
+                    block.selected = false;
+                }
+            });
         }
     }
 }

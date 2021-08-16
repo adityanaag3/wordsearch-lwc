@@ -4,6 +4,7 @@ export default class Splash extends LightningElement {
     gameObj;
     dataloaded = false;
     buttonEle;
+    gameKey;
 
     renderedCallback() {
         if (!this.buttonEle) {
@@ -20,6 +21,7 @@ export default class Splash extends LightningElement {
                     if (data.length > 0) {
                         this.gameObj = data[0];
                         this.dataloaded = true;
+                        this.gameKey = gamekey;
                     } else {
                         this.buttonEle.classList.add('animate');
                         setTimeout(() => {

@@ -20,24 +20,31 @@
                             </template>
                         </div>
                     </template>
-                    
                 </div>
             </div>
         </div>
         <div class="col border">
             <div class="center center-column">
                 <template if:false={gameOver}>
-                    <div class="totalWords">
-                        {totalWords}
-                    </div>
-                    <button onclick={validateWord}>Check Word</button>
-                    <div class="flex-grid flex-wrap words">
-                        <template for:each={foundWords} for:item="word">
-                            <div key={word} class="col word size_3-of-12">
-                                {word}
-                            </div>
-                        </template>
-                    </div>
+                    <template if:true={timeUp}>
+                        Time Up! You found {numberOfWordsFound} words.<br/><br/>
+                        <small>Here is the solution</small>
+                        <img src={solutionUrl} class="solution-img"/>
+                    </template>
+                    <template if:false={timeUp}>
+                        <my-timer duration-in-seconds={totalSeconds} seconds-left={secondsLeft}></my-timer>
+                        <div class="totalWords">
+                            {totalWords}
+                        </div>
+                        <button onclick={validateWord}>Check Word</button>
+                        <div class="flex-grid flex-wrap words">
+                            <template for:each={foundWords} for:item="word">
+                                <div key={word} class="col word size_3-of-12">
+                                    {word}
+                                </div>
+                            </template>
+                        </div>
+                    </template>
                 </template>
                 <template if:true={gameOver}>
                     <div class="text-align-center">

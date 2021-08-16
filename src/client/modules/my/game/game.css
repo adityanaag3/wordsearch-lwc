@@ -195,7 +195,7 @@ button {
 }
 
 .game-grid div[data-used=true][data-group='6']{
-    background-color: rgba(255, 37, 37, 0.38);
+    background-color: rgba(37, 99, 255, 0.38);
 }
 
 .game-grid div[data-selected=true]{
@@ -210,4 +210,13 @@ button {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
+}
+
+my-timer{
+    margin-bottom: 20px;
+}
+
+.solution-img{
+    max-width: 400px;
+    margin-top: 25px;
 }

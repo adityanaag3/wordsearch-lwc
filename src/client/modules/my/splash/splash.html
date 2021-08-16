@@ -1,6 +1,6 @@
 <template>
     <template if:true={dataloaded}>
-        <my-game game-obj={gameObj}></my-game>
+        <my-game game-obj={gameObj} game-key={gameKey}></my-game>
     </template>
     <template if:false={dataloaded}>
         <div class="container">
@@ -9,7 +9,7 @@
             <br />
             <button class="button" onclick={validateGameKey}>Start Game</button>
             <div class="credits">
-                Built by Aditya Naag Topalli<br/><a href="http://adityanaag.com" target="_blank">Website</a>&nbsp;|&nbsp;<a href="https://twitter.com/adityanaag" target="_blank">Twitter</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/adityanaag3/" target="_blank">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/adityanaag3/typeshift-lwc" target="_blank">Source Code</a>
+                Built by Aditya Naag Topalli<br/><a href="http://adityanaag.com" target="_blank">Website</a>&nbsp;|&nbsp;<a href="https://twitter.com/adityanaag" target="_blank">Twitter</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/adityanaag3/" target="_blank">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/adityanaag3/wordsearch-lwc" target="_blank">Source Code</a>
             </div>
         </div>
     </template>
