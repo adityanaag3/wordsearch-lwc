@@ -1,0 +1,51 @@
+<template>
+    <div class="flex-grid">
+        <div class="col">
+            <div class="center">
+                <div class="wordsearch noselect">
+                    <template if:true={gameObj.letterGroups}>
+                        <div class="game-grid" style={gridWidth}>
+                            <template for:each={gameBlocks} for:item="block">
+                                <div
+                                    class={block.class}
+                                    data-reference={block.id}
+                                    key={block.id}
+                                    onclick={handleLetterClick}
+                                    data-used={block.used}
+                                    data-selected={block.selected}
+                                    data-group={block.group}
+                                >
+                                    {block.letter}
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col border">
+            <div class="center center-column">
+                <template if:false={gameOver}>
+                    <div class="totalWords">
+                        {totalWords}
+                    </div>
+                    <button onclick={validateWord}>Check Word</button>
+                    <div class="flex-grid flex-wrap words">
+                        <template for:each={foundWords} for:item="word">
+                            <div key={word} class="col word size_3-of-12">
+                                {word}
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template if:true={gameOver}>
+                    <div class="text-align-center">
+                        🎉 🎉 🎉 <br/>
+                        You've found all the words in {duration} seconds.
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>
