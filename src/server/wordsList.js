@@ -85,6 +85,17 @@ const wordsList = [
             ['A', 'S', 'O', 'Q', 'L', 'I'],
         ]
     },
+    {
+        id: 'example',
+        words: ['WORD', 'LWC'],
+        gridSize: 4,
+        letterGroups: [
+            ['W', 'Z', 'X', 'C'],
+            ['O', 'R', 'B', 'Q'],
+            ['R', 'L', 'W', 'C'],
+            ['D', 'V', 'P', 'T'],
+        ]
+    },
 ];
 
 module.exports = wordsList;
