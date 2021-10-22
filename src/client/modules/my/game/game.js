@@ -21,6 +21,7 @@ export default class Game extends LightningElement {
     secondsLeft = TOTAL_SECONDS;
 
     score = 0;
+    player_id;
 
     get duration(){
         if(this.startTimestamp && this.endTimestamp){
@@ -47,7 +48,7 @@ export default class Game extends LightningElement {
     connectedCallback() {
         if (this.gameObj && this.gameObj.letterGroups && this.gameObj.gridSize) {
             const tmpBlocks = [];
-
+            this.player_id = localStorage.getItem('player_id');
             for (let y = 0; y < this.gameObj.gridSize; y++) {
                 for (let x = 0; x < this.gameObj.gridSize; x++) {
                     const obj = {
