@@ -5,9 +5,11 @@
     <template if:false={dataloaded}>
         <div class="container">
             <img src="/resources/wordsearch-lwc.png"/>
+            <input class="playername" placeholder="Enter your name"/>
+            <br />
             <input class="gamecode" placeholder="Enter Game Code"/>
             <br />
-            <button class="button" onclick={validateGameKey}>Start Game</button>
+            <button class="button" onclick={validateGameKey} disabled={disabled}>{buttonLabel}</button>
             <div class="credits">
                 Built by Aditya Naag Topalli<br/><a href="http://adityanaag.com" target="_blank">Website</a>&nbsp;|&nbsp;<a href="https://twitter.com/adityanaag" target="_blank">Twitter</a>&nbsp;|&nbsp;<a href="https://www.linkedin.com/in/adityanaag3/" target="_blank">LinkedIn</a>&nbsp;|&nbsp;<a href="https://github.com/adityanaag3/wordsearch-lwc" target="_blank">Source Code</a>
             </div>

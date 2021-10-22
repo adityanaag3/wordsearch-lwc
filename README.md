@@ -12,7 +12,3 @@ Navigate to [this Heroku App](https://wordsearch-lwc.herokuapp.com/). Use any of
 1. Game Codes for Level 3 (Salesforce Standard Objects): `o1`, `o2`.
 
 Click on a letter to select/unselect. Select letters sequentially (up, down, left, right, across) to form a word, and once you think you found a word, click on **Check Word**.
-
-## Roadmap
-
-Multi-player and leaderboard coming soon! Contributions welcome!

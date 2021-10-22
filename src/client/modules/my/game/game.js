@@ -1,6 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 
-const TOTAL_SECONDS = 65;
+const TOTAL_SECONDS = 180;
 
 export default class Game extends LightningElement {
     @api gameObj;
@@ -19,6 +19,8 @@ export default class Game extends LightningElement {
 
     totalSeconds = TOTAL_SECONDS;
     secondsLeft = TOTAL_SECONDS;
+
+    score = 0;
 
     get duration(){
         if(this.startTimestamp && this.endTimestamp){
@@ -69,6 +71,7 @@ export default class Game extends LightningElement {
             this.countDown = setInterval(() => {
                 this.secondsLeft--;
                 if(this.secondsLeft === 0){
+                    this.endGame();
                     this.timeUp = true;
                     clearInterval(this.countDown);
                 }
@@ -105,6 +108,7 @@ export default class Game extends LightningElement {
 
         if (foundWord && !this.foundWords.includes(foundWord)) {
             this.foundWords.push(foundWord);
+            this.score += 20;
             this.gameBlocks.forEach((block)=>{
                 if(block.selected){
                     block.used = true;
@@ -115,8 +119,9 @@ export default class Game extends LightningElement {
             if(this.gameObj.words.length === this.foundWords.length){
                 const d = new Date();
                 this.endTimestamp = d.getTime();
-                this.gameOver = true;
                 clearInterval(this.countDown);
+                this.endGame();
+                this.gameOver = true;
             }
         } else {
             const element = event.target;
@@ -130,5 +135,24 @@ export default class Game extends LightningElement {
                 }
             });
         }
+    }
+
+
+    endGame(){
+        this.score += this.secondsLeft;
+        const updateScoreBody = {"player_id": this.player_id, "score": this.score};
+        fetch('/api/savescore', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateScoreBody)
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            }).catch((e) => {
+                console.error(e);
+            });
     }
 }
