@@ -10,6 +10,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const app = express();
 app.use(helmet());
 app.use(compression());
+app.use(express.json());
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3002;
