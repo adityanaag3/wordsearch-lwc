@@ -4,7 +4,7 @@
 
 ## How to play?
 
-Navigate to [this Heroku App](https://wordsearch-lwc.herokuapp.com/). Use any of the game code(s) below to start playing.
+Navigate to [this Heroku App](https://lwc-games.herokuapp.com/word-search). Use any of the game code(s) below to start playing.
 
 1. Get familiar with the game and controls: `example`.
 1. Game Codes for Level 1 (Popular Salesforce abbreviations/acronyms): `a1`, `a2`.
